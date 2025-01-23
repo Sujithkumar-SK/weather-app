@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+        .weather-info {
+            margin-top: 20px;
+        }
+        .weather-info p {
+            font-size: 18px;
+        }
+        .weather-info img {
+            width: 50px;
+            height: 50px;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Weather Application</h1>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="city">Enter City:</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Get Weather</button>
+            </div>
+        </form>
+
+        {% if error_message %}
+        <div class="error-message">
+            <p>{{ error_message }}</p>
+        </div>
+        {% endif %}
+
+        {% if weather_data %}
+        <div class="weather-info">
+            <h2>Weather in {{ weather_data.city }}, {{ weather_data.country }}</h2>
+            <p><strong>Weather:</strong> {{ weather_data.description }}</p>
+            <img src="http://openweathermap.org/img/wn/{{ weather_data.icon }}.png" alt="Weather icon">
+            <p><strong>Temperature:</strong> {{ weather_data.temperature }}°C (Min: {{ weather_data.temperature_min }}°C, Max: {{ weather_data.temperature_max }}°C)</p>
+            <p><strong>Humidity:</strong> {{ weather_data.humidity }}%</p>
+            <p><strong>Pressure:</strong> {{ weather_data.pressure }} hPa</p>
+            <p><strong>Visibility:</strong> {{ weather_data.visibility }} km</p>
+            <p><strong>Wind Speed:</strong> {{ weather_data.wind_speed }} Km/Hr (Direction: {{ weather_data.wind_deg }}°)</p>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
