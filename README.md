@@ -23,10 +23,3 @@ To run this project, ensure you have:
 2. An API key from [OpenWeatherMap](https://openweathermap.org/api).
 
 ---
-
-## Setup Instructions
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/weather-app.git
-cd weather-app
